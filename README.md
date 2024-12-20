@@ -50,4 +50,4 @@ alembic upgrade head
 ![img2.png](images/img2.png)
 
 ## Роутер Assistant - уникальные методы для аналитики и помощи в контроле своевременности оплат.
-![img3.png](images3/img.png)
+![img3.png](images/img3.png)
