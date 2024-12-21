@@ -11,5 +11,6 @@ owner_router = BaseRouter(
     description='Методы для работы с таблицей owner',
     controller_dependency=Depends(get_owner_controller),
     short_schema_type=OwnerDto,
-    external_schema_type=OwnerFullDto
+    external_schema_type=OwnerFullDto,
+    has_authentication=True
 )

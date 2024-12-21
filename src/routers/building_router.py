@@ -10,5 +10,6 @@ building_router = BaseRouter(
     description='Методы для работы с таблицей building',
     controller_dependency=Depends(get_building_controller),
     short_schema_type=BuildingDto,
-    external_schema_type=BuildingDto
+    external_schema_type=BuildingDto,
+    has_authentication=True
 )

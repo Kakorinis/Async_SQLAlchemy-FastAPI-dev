@@ -30,6 +30,8 @@ class UniqueRouter:
 
         if not dependencies:
             dependencies = list()
+        if self._has_authentication:
+            dependencies: Optional[List[Depends]] = None
         self._api_router = APIRouter(
             prefix=router_prefix,
             dependencies=dependencies,

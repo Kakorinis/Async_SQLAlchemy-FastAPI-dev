@@ -21,6 +21,14 @@ class AppSettings(BaseSettings):
     # DB
     SQL_DSN: str = 'postgresql+asyncpg://localhost/postgres'
     SQL_SCHEMA: str = 'public'
+    PATH_NOT_REQUIRE_AUTH: list = [
+        '/',
+        '/info',
+        '/docs',
+        '/openapi.json',
+        '/redoc',
+        '/metrics',
+    ]
 
     # Auth
     AUTH_URL: str = ''  # TODO добавить авторизацию

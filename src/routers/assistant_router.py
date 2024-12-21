@@ -15,7 +15,8 @@ assistant_router = UniqueRouter(
             router_prefix='/assistant',
             name='Assistant',
             description='Уникальные методы для работы с должниками',
-            has_authentication=False
+            has_authentication=True,
+            dependencies=[]
         )
 
 

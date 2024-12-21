@@ -21,7 +21,7 @@ class ApartmentRouter(BaseRouter):
             description='Методы для работы с данными о квартирах',
             controller_dependency=Depends(get_apartment_controller),
             short_schema_type=ApartmentDto,
-            external_schema_type=ApartmentFullDto,
+            external_schema_type=ApartmentFullDto
         )
 
     def add_custom_routes(self):

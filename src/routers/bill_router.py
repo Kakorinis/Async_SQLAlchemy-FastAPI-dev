@@ -10,5 +10,6 @@ bill_router = BaseRouter(
     description='Методы для работы с таблицей bill',
     controller_dependency=Depends(get_bill_controller),
     short_schema_type=BillDto,
-    external_schema_type=BillDto
+    external_schema_type=BillDto,
+    has_authentication=True
 )

@@ -3,15 +3,16 @@ from typing import List
 from typing import Optional
 from typing import Type
 
+from fastapi import Depends
 from fastapi import Path
 from fastapi import Request
 from fastapi import params
 from fastapi import status
 from fastapi_cache.decorator import cache
 
-from src.logger import AppLogger
 from src.controllers import BaseController
 from src.enums import BaseMessageEnum
+from src.logger import AppLogger
 from src.schemas.dtos import BaseSchema
 from .base_abs_router import BaseAbsRouter
 
@@ -44,6 +45,7 @@ class BaseRouter(BaseAbsRouter):
             has_authentication=has_authentication,
             dependencies=dependencies
         )
+        #self.dependencies = [Depends(get_user_id)] if self.has_authentication else []
 
     def add_routes(self):
         AppLogger.debug(f'Add routes for admin router: {self.name}')
