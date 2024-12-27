@@ -1,0 +1,5 @@
+from .apartment_repository import ApartmentRepository
+from .assistant_repository import AssistantRepository
+from .bill_repository import BillRepository
+from .building_repository import BuildingRepository
+from .owner_repository import OwnerRepository

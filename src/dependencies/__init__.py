@@ -1,0 +1,1 @@
+from .controller_dependencies import get_apartment_controller
