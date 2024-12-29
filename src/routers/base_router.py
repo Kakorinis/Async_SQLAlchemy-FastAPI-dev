@@ -3,7 +3,6 @@ from typing import List
 from typing import Optional
 from typing import Type
 
-from fastapi import Depends
 from fastapi import Path
 from fastapi import Request
 from fastapi import params
@@ -45,7 +44,6 @@ class BaseRouter(BaseAbsRouter):
             has_authentication=has_authentication,
             dependencies=dependencies
         )
-        #self.dependencies = [Depends(get_user_id)] if self.has_authentication else []
 
     def add_routes(self):
         AppLogger.debug(f'Add routes for admin router: {self.name}')

@@ -11,7 +11,7 @@ class UserRepository:
     def __init__(self, async_db_session: AsyncSession):
         self.async_db_session = async_db_session
 
-    async def get_user_by_login(self, login: str) -> UserDto:
+    async def get_user_by_login(self, login: str) -> UserDto | None:
         stmt = select(Users).where(Users.login == login)
         model = await self.async_db_session.scalar(stmt)
-        return UserDto.model_validate(model)
+        return UserDto.model_validate(model) if model else None

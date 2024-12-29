@@ -1,19 +1,16 @@
 from base64 import b64decode
 
-from fastapi import Depends, params
-from starlette.status import HTTP_401_UNAUTHORIZED
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.middleware.base import RequestResponseEndpoint
 from starlette.requests import Request
 from starlette.responses import JSONResponse
 from starlette.responses import Response
+from starlette.status import HTTP_401_UNAUTHORIZED
 from starlette.types import ASGIApp
 
-from .common import is_the_same_passwords
 from settings import app_settings
-from .depends import get_user_repository
+from .common import is_the_same_passwords
 from .user_repository import UserRepository
-from ...dependencies.common import sqlalchemy_async_session_generator
 
 
 class AuthMiddleware(BaseHTTPMiddleware):
