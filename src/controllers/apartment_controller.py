@@ -5,6 +5,7 @@ from src.schemas.dtos import ApartmentDto
 from src.schemas.dtos import ApartmentFullDto
 from .base_controller import BaseController
 from src.schemas.responses import ApartmentFullResponse
+from src.exceptions import ObjectNotFoundError
 
 
 class ApartmentController(
@@ -39,7 +40,7 @@ class ApartmentController(
             self,
             apartment_number: int,
             building_id: int
-    ) -> ApartmentFullResponse:
+    ) -> ApartmentFullResponse | List[ApartmentFullResponse]:
         """
         Получение расширенных данных о квартире с задолженностью с заранее известными apartment_number и building_id.
 
@@ -47,7 +48,10 @@ class ApartmentController(
         :param building_id: иденификатор дома.
         :return: дто ApartmentFullResponse
         """
-        return await self.main_repository.get_apartments_full_data_with_debt_by_apart_id(apartment_number, building_id)
+        res = await self.main_repository.get_apartments_full_data_with_debt_by_apart_id(apartment_number, building_id)
+        if not res:
+            raise ObjectNotFoundError()
+        return res
 
     async def get_apartments_full_data_with_debt_by_project_name(
             self,
@@ -59,4 +63,7 @@ class ApartmentController(
         :param building_project_name: название жилого комплекса. Его может не быть, тогда поиск среди всех ЖК.
         :return: список дто ApartmentFullResponse
         """
-        return await self.main_repository.get_apartments_full_data_with_debt_by_project_name(building_project_name)
+        res = await self.main_repository.get_apartments_full_data_with_debt_by_project_name(building_project_name)
+        if not res:
+            raise ObjectNotFoundError()
+        return res
