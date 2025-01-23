@@ -6,6 +6,7 @@ from src.schemas.responses import ApartmentFullResponse, DebtorInfoResponse
 from settings import app_settings
 from src.schemas.responses import DebtorMessageResponse
 from src.schemas.responses.apartments_debt_schema import ApartmentsDebtSchema
+from src.telegram import get_telegram_bot
 
 
 class AssistantController:
@@ -42,6 +43,25 @@ class AssistantController:
             all_periods_data
         )
         return DebtorMessageResponse(data=message)
+
+    @staticmethod
+    async def send_tg_message_common_debt(dtos: List[DebtorInfoResponse]) -> None:
+        """
+        Метод отправки телеграм ботом сообщения в чат руководства о текущем общем состоянии задолженности.
+        :param dtos: схемы для расчета общей задолженности
+        :return: None
+        """
+        bot = await get_telegram_bot(app_settings.TG_BOT_TOKEN)
+        common_debt = sum(dto.all_aparts_common_debt for dto in dtos)
+        message = f'На текущий момент задолженность total:\n{common_debt} руб.'
+
+        """
+        При необходимости для ботов можно сделать таблицу ботов, для чатов - чаты, для сообщений - таблицу сообщений со
+        связью к таблице шаблона сообщений, а шаблона к параметрам для каждого из шаблона.
+        Таблицу сообщений связать связью с чатами и отдельной связью с ботами.
+        Тогда из БД получаем полный шаблон сообщения, куда через ф строку подставить значения.
+        """
+        await bot.send_message(chat_id=app_settings.TG_CHAT_ID, message=message)
 
     @staticmethod
     def map_debtors_info_response(
