@@ -79,4 +79,6 @@ async def get_all_debtors_with_debt_analyse(
     Поиск возможен по определенному ЖК либо по всем в целом.
     """
     full_data_apart_dto = await ap_controller.get_apartments_full_data_with_debt_by_project_name(building_project_name)
-    return main_controller.map_debtors_info_response(dtos=full_data_apart_dto, sort_flag=True)
+    dtos = main_controller.map_debtors_info_response(dtos=full_data_apart_dto, sort_flag=True)
+    await main_controller.send_tg_message_common_debt(dtos)
+    return dtos

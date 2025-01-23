@@ -55,6 +55,8 @@ class AppSettings(BaseSettings):
     директор ООО УК Управдом
     Курицын Александр Всеволодович
     """
+    TG_CHAT_ID: str
+    TG_BOT_TOKEN: str
 
 
 app_settings = AppSettings()
