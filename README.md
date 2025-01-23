@@ -46,6 +46,7 @@ Backlog: <br>
 - SQLAlchemy ORM,
 - alembic,
 - redis
+- aiogram
 
 
 ## Пример отображения базовых crud методов на примере apartments (кроме первого):
